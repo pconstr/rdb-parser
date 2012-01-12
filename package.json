@@ -1,13 +1,13 @@
 {
   "name": "rdb-parser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": ["redis", "rdb", "db", "parser", "streaming"],
   "homepage": "http://perceptiveconstructs.com",
   "description": "async streaming parser for redis RDB dumps, in 100% Javascript",
   "main": "rdb-parser.js",
   "repository": {
     "type": "git",
-    "url": "https://pconstr@bitbucket.org/pconstr/rdb-parser.git"
+    "url": "https://github.com/pconstr/rdb-parser"
   },
   "engines": {
     "node": ">=0.4.0 <0.7.0"

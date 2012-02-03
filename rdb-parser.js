@@ -196,6 +196,27 @@ function Parser() {
     });
   }
 
+  function getDouble(cb) {
+    getFixedBytes(1, function(err, buffers) {
+      var l = Buffer.concat(buffers)[0];
+      if(l === 253) {
+        return cb(null, 'NaN');
+      } else if(l === 254) {
+        return cb(null, '+inf');
+      } else if(l === 255) {
+        return cb(null, '-inf');
+      }
+
+      getFixedBytes(l, function(err, buffers) {
+        if(err) {
+          return cb(err);
+        }
+        var v = Buffer.concat(buffers).toString();
+        return cb(null, v);
+      });
+    });
+  }
+
   function getZipMap(cb) {
     // TODO: pipeline getString into an incremental ziplist parser
     getString(function(err, s) {
@@ -277,6 +298,45 @@ function Parser() {
         }
       }
       cb(null, is);
+    });
+  }
+
+  function getZSet(cb) {
+    // dict size
+    // entry key (string)
+    // entry score (double)
+
+    getEncodedLen(function(err, zLen, isEncoded) {
+      if(err) {
+        return cb(err);
+      }
+
+      var set = [];
+      var rem = zLen;
+
+      function getItem() {
+        if(rem === 0) {
+          return cb(null, set);
+        }
+
+        getString(function(err, key) {
+          if(err) {
+            return cb(err);
+          }
+
+          getDouble(function(err, score) {
+            if(err) {
+              return cb(err);
+            }
+            set.push(key);
+            set.push(score);
+            --rem;
+            getItem();
+          });
+        });
+      }
+
+      getItem();
     });
   }
 
@@ -526,7 +586,14 @@ function Parser() {
         });
         break;
       case REDIS_ZSET:
-        return error('TODO: REDIS_ZSET');
+        getZSet(function(err, zs) {
+          if(err) {
+            return error(err);
+          }
+          that.emit('entity', [REDIS_ZSET, key, zs]);
+          state = 'type';
+        });
+        break;
       case REDIS_HASH:
         getHash(function(err, h) {
           if(err) {

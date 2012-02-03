@@ -1,7 +1,8 @@
 /*jslint white: true, plusplus: true, vars: true, bitwise: true*/
 
 /* Copyright 2011-2012 Carlos Guerreiro
- * http://perceptiveconstructs.com
+ *   http://perceptiveconstructs.com
+ * Copyright 2012 Igalia S.L.
  * Licensed under the MIT license */
 
 "use strict";

@@ -13,8 +13,8 @@
     "node": ">=0.4.0 <0.7.0"
   },
   "author": "Carlos Guerreiro <carlos@perceptiveconstructs.com (http://perceptiveconstructs.com)",
-  "dependencies": {"node-int64": "0.3.0", "lzf": "0.1.1", "bufferjs": "1.0.2"},
-  "devDependencies": {"jslint": "0.1.4"},
+  "dependencies": {"node-int64": "0.3.0", "lzf": "0.1.1", "bufferjs": "1.1.0"},
+  "devDependencies": {"jslint": "0.1.8"},
   "licenses": [
     {
       "type": "MIT",

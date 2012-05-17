@@ -202,9 +202,11 @@ function Parser() {
       var l = Buffer.concat(buffers)[0];
       if(l === 253) {
         return cb(null, 'NaN');
-      } else if(l === 254) {
+      }
+      if(l === 254) {
         return cb(null, '+inf');
-      } else if(l === 255) {
+      }
+      if(l === 255) {
         return cb(null, '-inf');
       }
 
@@ -434,16 +436,15 @@ function Parser() {
       function getRemaining() {
         if (remCount === 0) {
           return cb(null, hash);
-        } else {
-          getString(function(err, s) {
-            if(err) {
-              return cb(err);
-            }
-            hash.push(s);
-            --remCount;
-            getRemaining();
-          });
         }
+        getString(function(err, s) {
+          if(err) {
+            return cb(err);
+          }
+          hash.push(s);
+          --remCount;
+          getRemaining();
+        });
       }
 
       getRemaining();
@@ -462,16 +463,15 @@ function Parser() {
       function getRemaining() {
         if (remCount === 0) {
           return cb(null, list);
-        } else {
-          getString(function(err, s) {
-            if(err) {
-              return cb(err);
-            }
-            list.push(s);
-            --remCount;
-            getRemaining();
-          });
         }
+        getString(function(err, s) {
+          if(err) {
+            return cb(err);
+          }
+          list.push(s);
+          --remCount;
+          getRemaining();
+        });
       }
 
       getRemaining();

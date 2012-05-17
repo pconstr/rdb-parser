@@ -1,6 +1,6 @@
 {
   "name": "rdb-parser",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "keywords": ["redis", "rdb", "db", "parser", "streaming"],
   "homepage": "http://perceptiveconstructs.com",
   "description": "async streaming parser for redis RDB dumps",

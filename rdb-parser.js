@@ -229,6 +229,7 @@ function Parser() {
 
       var i = 0;
       var cnt = 0;
+      var free;
 
       i ++; // skip zmlen
 
@@ -247,13 +248,15 @@ function Parser() {
         }
 
         if((cnt & 1) === 1) {
-          var free = s[i++];
+          free = s[i++];
+        } else {
+          free = 0;
         }
 
         if(len !== null) {
           var v = s.slice(i, i+ len);
           map.push(v);
-          i += len;
+          i += (len + free);
         }
         cnt++;
       }

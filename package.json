@@ -1,6 +1,6 @@
 {
   "name": "rdb-parser",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "keywords": ["redis", "rdb", "db", "parser", "streaming"],
   "homepage": "http://perceptiveconstructs.com",
   "description": "async streaming parser for redis RDB dumps",
@@ -10,7 +10,7 @@
     "url": "https://github.com/pconstr/rdb-parser"
   },
   "engines": {
-    "node": ">=0.6.0 <0.7.0"
+    "node": ">=0.6.0 <0.9.0"
   },
   "author": "Carlos Guerreiro <carlos@perceptiveconstructs.com (http://perceptiveconstructs.com)",
   "dependencies": {"node-int64": "0.3.0", "lzf": "0.1.1", "bufferjs": "1.1.0"},
